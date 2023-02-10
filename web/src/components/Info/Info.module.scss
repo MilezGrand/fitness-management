@@ -1,0 +1,122 @@
+.container__info {
+    font-family: 'Roboto', sans-serif;
+    margin: 30px 30px 0 30px;
+    border: 1px solid black;
+    min-width: 700px;
+    width: 1000vh;
+    height: 95vh;
+    overflow-y: auto;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    .container__header_services {
+        display: flex;
+        justify-content: space-between;
+        padding: 0 40px 15px 40px;
+        
+        p:nth-child(1) {
+            position: absolute;
+            left: 1335px
+        }
+
+        p {
+            margin: 0;
+            color: grey;
+        }
+    }
+
+    ul {
+        margin: 0;
+        padding: 0;
+        li {
+            display: flex;
+            justify-content: space-between;
+            height: 15px;
+            padding: 15px 40px 25px 40px;
+
+            font-size: 18px;
+            cursor: pointer;
+
+            div:nth-child(1) {
+                position: absolute;
+                left: 1335px
+            }
+
+            &:nth-child(odd) {
+                background-color: #ECECEC;
+            }
+            
+            div {
+                margin-top: 5px;
+            }
+        }
+    }
+
+    .section__add_service {
+        margin: 15px auto 25px auto;
+        display: flex;
+        justify-content: space-around;
+        width: 600px;
+    }
+
+    
+
+    input {
+        display: block;
+        border-radius: 5px;
+        width: 400px;
+
+        height: 43px;
+        border: none;
+        background-color: #ECECEC;
+        padding-left: 10px;
+
+        &:focus {
+            outline-width: 0;
+            
+        }
+    }
+
+    select {
+        display: block;
+        border-radius: 5px;
+        width: 400px;
+        height: 45px;
+        border: none;
+        background-color: #ECECEC;
+        padding-left: 10px;
+        cursor: pointer;
+        font-size: 16px;
+        &:focus {
+            outline-width: 0;
+        }
+
+        &:hover {
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    }
+
+    .info {
+        display: flex;
+        flex-direction: column;
+    
+        span {
+            margin-left: 40px;
+            padding-top: 15px;
+    
+            &:nth-child(1) {
+                padding-top: 0;
+            }
+    
+            &:nth-child(4) {
+                padding-top: 15px;
+                margin-bottom: 15px;
+            }
+        }
+    }
+
+    .skeleton__service {
+        display: flex;
+    }
+}
+

@@ -1,0 +1,29 @@
+body {
+
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Roboto';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  h3 {
+    text-align: center;
+  }
+
+  button {
+    background: #ECECEC;
+    cursor: pointer;
+    border: none;
+    width: 170px;
+    height: 45px;
+    font-size: 21px;
+    border-radius: 5px;
+
+    &:hover {
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+  }
+}
+
+.wrapper {
+  display: flex;
+}
