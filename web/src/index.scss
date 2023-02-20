@@ -1,5 +1,5 @@
 body {
-
+  background-color: grey;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Roboto';
   -webkit-font-smoothing: antialiased;
@@ -26,4 +26,5 @@ body {
 
 .wrapper {
   display: flex;
+  // justify-content: space-between;
 }

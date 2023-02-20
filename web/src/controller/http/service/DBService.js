@@ -25,7 +25,7 @@ export default class DBService {
     return axios.post(`/service`, service);
   }
 
-  static async updateClient(id, serviceId) {
-    return axios.put(`/clients/${id}`, serviceId);
+  static async updateClient(client) {
+    return axios.put(`/clients`, client);
   }
 }

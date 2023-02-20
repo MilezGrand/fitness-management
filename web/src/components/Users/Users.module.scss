@@ -1,14 +1,13 @@
 .container__clients {
+    background-color: white;
     font-family: 'Roboto', sans-serif;
     margin: 30px 30px 0 30px;
     border: 1px solid black;
-    min-width: 400px;
+    min-width: 450px;
     height: 95vh;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    flex-wrap: wrap;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 

@@ -49,8 +49,8 @@ const AddClient = (props) => {
     });
 
     await DBService.addService({
-      client_id: id,
-      service_id: parseService(abonementExpires),
+      clientId: id,
+      serviceId: parseService(abonementExpires),
       id: Date.now(),
     });
 
@@ -86,6 +86,8 @@ const AddClient = (props) => {
         break;
       case 'phone':
         setPhoneDirty(true);
+        break;
+      default:
         break;
     }
   };

@@ -21,12 +21,12 @@ const Info = () => {
 
   const addHandle = async () => {
     await DBService.addService({
-      client_id: id,
-      service_id: newServiceID,
+      clientId: id,
+      serviceId: newServiceID,
       id: Date.now(),
     });
 
-    await DBService.updateClient(id, { serviceId: newServiceID });
+    await DBService.updateClient({ clientId: id, serviceId: newServiceID });
     dispatch(fetchClientServices(id));
     dispatch(fetchClientInfo(id));
   };
