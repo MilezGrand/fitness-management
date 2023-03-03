@@ -71,7 +71,7 @@ const Info = () => {
             </span>
           </div>
         ) : (
-          <Skeleton type="info" />
+          <Skeleton/>
         )}
 
         <hr />
@@ -97,12 +97,12 @@ const Info = () => {
           <p>Стоимость</p>
         </div>
 
-        {info.status === 'loaded' ? (
+        {info.status === 'loaded' && (
           <ul>
             {services.items.map((item, i) => (
               <li key={i}>
-                {item.service_info.service_name}
-                <div>
+                <p>{item.service_info.service_name}</p>
+                <p>
                   {new Date(parseInt(item.id)).getDate() +
                     '/' +
                     (new Date(parseInt(item.id)).getMonth() + 1) +
@@ -112,13 +112,11 @@ const Info = () => {
                     new Date(parseInt(item.id)).getHours() +
                     ':' +
                     new Date(parseInt(item.id)).getMinutes()}
-                </div>
-                <div>{item.service_info.price.split('$')}</div>
+                </p>
+                <p>{item.service_info.price.split('$')}</p>
               </li>
             ))}
           </ul>
-        ) : (
-          [...new Array(3)].map((_, i) => <Skeleton key={i} type="services" />)
         )}
       </div>
     </>

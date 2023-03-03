@@ -11,6 +11,7 @@
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
+    
     ul {
         padding: 0;
         flex-grow: 1;
@@ -23,7 +24,9 @@
             text-decoration: none;
             color: #000;
         }
-
+        &.active {
+            color:red;
+        }
         li {
             height: 35px;
             padding-top: 15px;

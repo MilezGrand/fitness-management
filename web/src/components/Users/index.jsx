@@ -42,8 +42,8 @@ const Users = (props) => {
     );
 
     return (isClientsLoading === 'loaded' ? [...Array(3)] : filteredItems).map((item, i) => (
-      <li key={item.id}>
-        <Link to={`/clients/${item.id}`}>
+      <li key={item.id} activeClassName='active'>
+        <Link to={`/clients/${item.id}`} >
           {item.name}
           <img src="/delete.svg" alt="Удалить" onClick={(e) => deleteHandler(e, item.id)} />
         </Link>

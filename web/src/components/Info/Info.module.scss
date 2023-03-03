@@ -15,12 +15,13 @@
         justify-content: space-between;
         padding: 0 40px 15px 40px;
         
-        p:nth-child(1) {
-            // position: absolute;
-            // left: 1335px
+        p:nth-child(3) {
+            width: 100px;
+            text-align: right;
         }
 
         p {
+            width: 400px;
             margin: 0;
             color: grey;
         }
@@ -35,21 +36,23 @@
             justify-content: space-between;
             height: 15px;
             padding: 15px 40px 25px 40px;
-
+            
             font-size: 18px;
             cursor: pointer;
 
-            div:nth-child(1) {
-                
-                left: 1350px
+            p:nth-child(3) {
+                width: 100px;
+                text-align: right;
+
             }
 
             &:nth-child(odd) {
                 background-color: #ECECEC;
             }
             
-            div {
+            p {
                 margin-top: 5px;
+                width: 400px;
             }
         }
     }
