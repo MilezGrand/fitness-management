@@ -3,19 +3,19 @@ import * as dotenv from 'dotenv';
 
 dotenv.config();
 
-export const db = new Sequelize({
-  dialect: 'postgres',
-  host: process.env.DB_HOST,
-  password: process.env.DB_PASSWORD,
-  username: process.env.DB_USERNAME,
-  database: process.env.DB_DATABASE,
-  port: process.env.DB_PORT,
-  define: {
-    timestamps: false,
+export const db = new Sequelize(
+  process.env.DB_NAME || 'postgres',
+  process.env.DB_USER || 'postgres',
+  process.env.DB_PASS || '123',
+  {
+    dialect: 'postgres',
+    host: process.env.DB_HOST,
+    define: {
+      timestamps: false,
+    },
+    logging: false
   },
-  logging: false
-})
-
+)
 
 export const openConnection = () => {
   try {
