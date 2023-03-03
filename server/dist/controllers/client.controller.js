@@ -13,41 +13,57 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ClientController = void 0;
-const postgres_js_1 = __importDefault(require("../service/postgres.js"));
+const client_model_js_1 = __importDefault(require("../models/client.model.js"));
+const abonement_model_js_1 = __importDefault(require("../models/abonement.model.js"));
+const service_model_js_1 = __importDefault(require("../models/service.model.js"));
 class ClientController {
     createClient(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id, name, passport, phone, abonementType, expires } = req.body;
-            yield postgres_js_1.default.query(`INSERT INTO clients(id, name, passport, contact, abonement, expires) VALUES ($1, $2, $3, $4, $5, $6)`, [id, name, passport, phone, abonementType, expires]);
-            res.status(200);
+            const data = yield client_model_js_1.default.create({
+                id: id,
+                name: name,
+                passport: passport,
+                contact: phone,
+                abonement: abonementType,
+                expires: expires,
+            });
+            res.status(200).send(data);
         });
     }
     getClients(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const data = yield postgres_js_1.default.query('SELECT name,id FROM clients');
-            console.log(postgres_js_1.default.eventNames());
-            res.send(data.rows);
+            const data = yield client_model_js_1.default.findAll({ order: [['name', 'ASC']] });
+            res.status(200).send(data);
         });
     }
     getClient(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const id = req.params.id;
-            const data = yield postgres_js_1.default.query('SELECT * FROM clients INNER JOIN abonements ON clients.abonement = abonements.id WHERE clients.id = $1 ', [id]);
-            res.status(200).json(data.rows);
+            const data = yield client_model_js_1.default.findOne({
+                where: { id: id },
+                include: { model: abonement_model_js_1.default, as: 'abonement_info' },
+            });
+            res.status(200).send(data);
         });
     }
     updateClient(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { clientId, serviceId } = req.body;
-            const data = yield postgres_js_1.default.query(`UPDATE clients SET expires = expires + (services.period::text||' days')::interval FROM services WHERE services.id = $2 AND clients.id = $1 `, [clientId, serviceId]);
-            res.status(200).json(data.rows);
+            const service = yield service_model_js_1.default.findOne({ where: { id: serviceId } });
+            const client = yield client_model_js_1.default.findOne({ where: { id: clientId } });
+            const actualExpires = new Date(client === null || client === void 0 ? void 0 : client.dataValues.expires).getTime();
+            const data = yield (client === null || client === void 0 ? void 0 : client.update({
+                expires: new Date(actualExpires + (service === null || service === void 0 ? void 0 : service.dataValues.period) * 86400 * 1000),
+            }));
+            res.status(200).send(data);
         });
     }
     deleteClient(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const id = req.params.id;
-            const data = yield postgres_js_1.default.query('DELETE FROM clients WHERE clients.id = $1', [id]);
-            res.status(200).json(data.rows);
+            yield client_model_js_1.default.destroy({ where: { id: id } });
+            res.status(200).json({});
         });
     }
 }

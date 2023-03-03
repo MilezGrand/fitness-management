@@ -13,20 +13,29 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ServiceController = void 0;
-const postgres_js_1 = __importDefault(require("../service/postgres.js"));
+const order_model_js_1 = __importDefault(require("../models/order.model.js"));
+const service_model_js_1 = __importDefault(require("../models/service.model.js"));
 class ServiceController {
     getServices(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const id = req.params.id;
-            const data = yield postgres_js_1.default.query('SELECT * FROM rented_services INNER JOIN services ON rented_services.service_id = services.id WHERE client_id = $1 ORDER BY rented_services.timestamp DESC', [id]);
-            res.status(200).json(data.rows);
+            const data = yield order_model_js_1.default.findAll({
+                where: { client_id: id },
+                include: { model: service_model_js_1.default, as: 'service_info' },
+                order: [['id', 'DESC']]
+            });
+            res.status(200).send(data);
         });
     }
     createService(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id, clientId, serviceId } = req.body;
-            const data = yield postgres_js_1.default.query(`INSERT INTO rented_services(timestamp, client_id, service_id ) VALUES ($1, $2, $3)`, [id, clientId, serviceId]);
-            res.status(200).json(data.rows);
+            const data = yield order_model_js_1.default.create({
+                id: id,
+                client_id: clientId,
+                service_id: serviceId,
+            });
+            res.status(200).send(data);
         });
     }
 }

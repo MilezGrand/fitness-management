@@ -16,8 +16,8 @@
         padding: 0 40px 15px 40px;
         
         p:nth-child(1) {
-            position: absolute;
-            left: 1335px
+            // position: absolute;
+            // left: 1335px
         }
 
         p {
@@ -29,6 +29,7 @@
     ul {
         margin: 0;
         padding: 0;
+
         li {
             display: flex;
             justify-content: space-between;
@@ -39,8 +40,8 @@
             cursor: pointer;
 
             div:nth-child(1) {
-                position: absolute;
-                left: 1335px
+                
+                left: 1350px
             }
 
             &:nth-child(odd) {

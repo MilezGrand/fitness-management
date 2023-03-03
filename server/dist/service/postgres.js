@@ -12,22 +12,15 @@ const dbConfig = {
     port: 5432,
     password: '123456'
 };
-// const dbConfig = {
-//   user: 'postgres', 
-//   host: '82.146.54.93', 
-//   port: 5432,
-//   password: '123456' 
-// }
 const client = new pg_1.default.Client(dbConfig);
 const sequelize = new sequelize_1.Sequelize('phone_book', 'postgres', '123456', {
     dialect: 'postgres',
     host: 'localhost'
 });
-try {
-    client.connect();
-    console.log('Connected to database');
-}
-catch (error) {
-    console.log(error);
-}
+// try {
+//   client.connect();
+//   console.log('Connected to database');
+// } catch (error) {
+//   console.log(error);
+// }
 exports.default = client;

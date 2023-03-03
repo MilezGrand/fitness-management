@@ -17,7 +17,7 @@ const Info = () => {
   React.useEffect(() => {
     dispatch(fetchClientInfo(id));
     dispatch(fetchClientServices(id));
-  }, [id, dispatch]);
+  }, [dispatch, id]);
 
   const addHandle = async () => {
     await DBService.addService({
@@ -40,28 +40,28 @@ const Info = () => {
           <div className={s.info}>
             <span>
               <b>ФИО: </b>
-              {info.items[0]?.name}
+              {info.items.name}
             </span>
             <span>
               <b>Паспортные данные: </b>
-              {info.items[0]?.passport}
+              {info.items.passport}
             </span>
             <span>
               <b>Номер телефона: </b>
-              {info.items[0]?.contact}
+              {info.items.contact}
             </span>
             <span className={s.label__expires}>
               <b>Абонемент: </b>
-              {`${info.items[0]?.abonement_name} `}
-              {new Date(info.items[0].expires) > Date.now() ? (
+              {`${info.items.abonement_info.abonement_name} `}
+              {new Date(info.items.expires) > Date.now() ? (
                 <>
                   (Истекает:{' '}
                   {String(
-                    new Date(info.items[0]?.expires).getDate() +
+                    new Date(info.items.expires).getDate() +
                       '/' +
-                      (new Date(info.items[0]?.expires).getMonth() + 1) +
+                      (new Date(info.items.expires).getMonth() + 1) +
                       '/' +
-                      new Date(info.items[0]?.expires).getFullYear(),
+                      new Date(info.items.expires).getFullYear(),
                   )}
                   )
                 </>
@@ -92,8 +92,8 @@ const Info = () => {
         </div>
 
         <div className={s.container__header_services}>
-          <p>Дата</p>
           <p>Название</p>
+          <p>Дата</p>
           <p>Стоимость</p>
         </div>
 
@@ -101,19 +101,19 @@ const Info = () => {
           <ul>
             {services.items.map((item, i) => (
               <li key={i}>
-                {item.service_name}
+                {item.service_info.service_name}
                 <div>
-                  {new Date(parseInt(item.timestamp)).getDate() +
+                  {new Date(parseInt(item.id)).getDate() +
                     '/' +
-                    (new Date(parseInt(item.timestamp)).getMonth() + 1) +
+                    (new Date(parseInt(item.id)).getMonth() + 1) +
                     '/' +
-                    new Date(parseInt(item.timestamp)).getFullYear() +
+                    new Date(parseInt(item.id)).getFullYear() +
                     ' ' +
-                    new Date(parseInt(item.timestamp)).getHours() +
+                    new Date(parseInt(item.id)).getHours() +
                     ':' +
-                    new Date(parseInt(item.timestamp)).getMinutes()}
+                    new Date(parseInt(item.id)).getMinutes()}
                 </div>
-                <div>{services.items[i].price.split('$')}</div>
+                <div>{item.service_info.price.split('$')}</div>
               </li>
             ))}
           </ul>

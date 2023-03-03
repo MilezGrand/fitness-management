@@ -9,6 +9,7 @@
     "dev": "nodemon ./dist/index.js"
   },
   "dependencies": {
+    "@types/sequelize": "^4.28.14",
     "axios": "^1.2.1",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",

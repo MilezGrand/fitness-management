@@ -24,14 +24,12 @@ const Users = (props) => {
   const deleteHandler = async (e, id) => {
     e.preventDefault();
 
-    if (clients.items.length > 1) {
-      navigate(`/clients/${clients.items[0].id}`);
-    } else {
-      navigate(`/clients/`);
-    }
-
     await DBService.deleteClient(id);
     dispatch(fetchClients());
+
+    if (window.location.pathname.split('/clients/')[1] === id) {
+      navigate(`/`);
+    } 
   };
 
   const searchHandler = (e) => {
